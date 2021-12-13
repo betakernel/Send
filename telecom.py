@@ -10,10 +10,10 @@ PUSH_PLUS_TOKEN = ''
 #]
 # 多个手机号配置
 config_list = [
-    {"mobile": "1335461xxx", "food": True},
-    {"mobile": "191456xxx", "food": True},
-    {"mobile": "19921xxx", "food": True},
-    {"mobile": "1739xxxx", "food": True}
+    {"mobile": "133539874。。", "food": True},
+    {"mobile": "191456836。。", "food": True},
+    {"mobile": "199213148。。", "food": True},
+    {"mobile": "173989050。。", "food": True}
 ]
 msg = []
 def pushplus(title, content):
@@ -86,7 +86,7 @@ def convert_reward(config):
     msg.append(mobile + " 开始执行满7天兑换话费...")
     phone_body = requests.get(url="http://49.232.124.89:8080/telecom/getPhone", params={"mobile": mobile}).json()
     activity_ret = requests.post(url="https://wapside.189.cn:9001/jt-sign/reward/activityMsg", json=phone_body,
-                             headers=get_h5_headers(mobile)).json()
+                                 headers=get_h5_headers(mobile)).json()
     msg.append("你已连续签到 " + str(activity_ret['totalDay']) + " 天")
     if activity_ret['recordNum'] > 0:
         #可以领取
@@ -95,11 +95,11 @@ def convert_reward(config):
             "mobile": mobile,
             "rewardId": reward_id
         }
-        reward_body = requests.get(url="http://49.232.124.89:8080/telecom/getPhone", params=params).json()
+        reward_body = requests.get(url="http://49.232.124.89:8080/telecom/getConvertReward", params=params).json()
         reward_ret = requests.post(url="https://wapside.189.cn:9001/jt-sign/reward/convertReward", json=reward_body,
-                      headers=get_h5_headers(mobile)).json()
-        msg.append("领取结果: ")
-        msg.append(reward_ret)
+                                   headers=get_h5_headers(mobile)).json()
+        if reward_ret['code'] == '0':
+            msg.append(reward_ret['msg'])
 
 
 def get_h5_headers(mobile):
