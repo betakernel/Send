@@ -86,7 +86,7 @@ async function start() {
 	h = myDate.getHours();
 	// console.log(h);
 	console.log(`现在的时间 ${h} 点 ,签到,观看视频,京喜红包,升级 等任务每天 8 点开启! `);
-	if (h == 20) {
+	if (h == 0) {
 
 		console.log("开始 签到");
 		await signin();
