@@ -184,7 +184,7 @@ async function sendNotify(text, desp, params = {}, author = '\n\n仅供用于学
 
 {
 
-exec('task shufflewzc_faker3_main/jd_wskey.py',function(error,stdout,stderr){
+exec('task Zy143L_wskey/wskey.py',function(error,stdout,stderr){
 
 console.log(error,stdout,stderr);
 
